@@ -1,0 +1,114 @@
+# Git specific files and directories
+.git/
+.gitignore
+.gitattributes
+.gitmodules
+
+# Docker specific files (the Dockerfile itself is used by the client, not needed in context)
+Dockerfile
+.dockerignore
+
+# GitHub specific files (workflows are for CI/CD, not for the image itself)
+.github/
+
+# Python bytecode and cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*$py.class
+
+# Virtual environments
+venv/
+.venv/
+env/
+ENV/
+
+# Conda / Pipenv / Poetry lock files or environment directories
+Pipfile.lock
+poetry.lock
+# Note: credit_risk_env.yml is NEEDED for the build, so it's NOT ignored.
+
+# Distribution / packaging
+.Python
+build/
+dist/
+eggs/
+.eggs/
+wheels/
+share/python-wheels/
+pip-wheel-metadata/
+*.egg-info/
+*.egg
+MANIFEST
+sdist/
+*.tar.gz
+*.zip
+
+# C Extensions & Docs build artifacts
+*.so
+_docs/
+_docs/_build/
+docs/_build/
+
+# Testing & Coverage artifacts
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache # General cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+.mypy_cache/
+.pyre/
+
+# IDEs & Editors specific files/folders
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+nbproject/
+*.swp
+*~
+*.bak
+*.tmp
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+
+# Notebook checkpoints
+.ipynb_checkpoints/
+
+# Log files
+*.log
+
+# Sensitive / Environment specific files (should be managed via Docker secrets or runtime env vars)
+.env
+.env.*
+secrets.yaml
+secrets.yml
+*.pem
+*.key
+
+# Local instance/database files
+instance/
+*.sqlite3 # If it's a local dev database not meant for the image
+*.db
+
+# Documentation files
+README.md
+README.rst
+CONTRIBUTING.md
+LICENSE
+CHANGELOG.md

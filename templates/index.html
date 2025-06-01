@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Credit Risk Prediction</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/static/css/style.css" />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  </head>
+  <body>
+    <div class="crp-app"> <header role="banner" class="crp-header">
+        <h1 class="crp-header__title">Credit Risk Prediction</h1>
+      </header>
+
+      <main role="main" class="crp-main-content">
+        <button id="predictButton" class="crp-button">Predict Next Client</button>
+
+        <div class="crp-results"> <div class="crp-gauge common-width" id="resultBox" aria-live="polite" aria-label="Prediction Result Gauge"> <div class="crp-gauge__fill" id="gaugeFill"></div>
+            <div class="crp-gauge__text" id="gaugeText">Result will appear here</div>
+            <div class="crp-gauge__threshold-mark" id="thresholdMark" aria-hidden="true"></div>
+            <div class="crp-gauge__threshold-value" id="thresholdValue" aria-hidden="true"></div>
+          </div>
+
+          <div class="crp-client-info common-width" id="clientInfoDiv" aria-live="polite" aria-label="Client Information"> <p class="crp-client-info__line">Loan ID and Credit Amount will appear here</p>
+          </div>
+        </div>
+
+        <div class="crp-toggle-area"> <div class="crp-toggle">
+            <input type="checkbox" id="toggleDashboard" class="crp-toggle__input" aria-controls="dashboardDiv" />
+            <label for="toggleDashboard" class="crp-toggle__label">Toggle Enhanced Dashboard</label>
+          </div>
+
+          <span style="display: inline-block; width: 30px;"></span> <div class="crp-toggle">
+            <input type="checkbox" id="toggleDisplay" class="crp-toggle__input" />
+            <label for="toggleDisplay" class="crp-toggle__label">End User Display</label>
+          </div>
+        </div>
+
+        <div class="crp-dashboard" id="dashboardDiv"> <h2 class="crp-dashboard__title">Enhanced Dashboard (Mock)</h2>
+          <img src="/static/mock_dashboard.png" alt="Enhanced Dashboard Mockup showing various charts and metrics" class="crp-dashboard__image" />
+        </div>
+      </main>
+
+      <footer role="contentinfo" class="crp-footer">
+        <p class="crp-footer__text">© 2025 Prêt à dépenser</p>
+      </footer>
+    </div>
+    <script type="module" src="/static/js/script.js"></script>
+  </body>
+</html>

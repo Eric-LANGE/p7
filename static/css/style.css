@@ -1,0 +1,220 @@
+/* --- Base Styling --- */
+:root {
+  /* Color Palette */
+  --background-color: #f8f9fa; /* Slightly off-white */
+  --text-color: #212529; /* Dark text */
+  --container-background: #fff;
+  --footer-text-color: #6c757d; /* Gray */
+  --border-color: #ced4da; /* Lighter gray */
+  --light-gray-background: #e9ecef;
+
+  /* Button Colors */
+  --button-primary-bg: #007bff; /* Bootstrap primary blue */
+  --button-primary-hover-bg: #0056b3; /* Darker blue */
+  --button-primary-text: #fff;
+  --button-disabled-bg: #6c757d; /* Gray */
+  --button-focus-outline: #0056b3;
+
+  /* Gauge/Result Colors */
+  --gauge-threshold-color: #000; /* Black for threshold line/text */
+  --gauge-accepted-fill: #d4edda; /* Light green */
+  --gauge-accepted-text: #155724; /* Dark green */
+  --gauge-accepted-border: #c3e6cb;
+  --gauge-refused-fill: #f8d7da; /* Light red */
+  --gauge-refused-text: #721c24; /* Dark red */
+  --gauge-refused-border: #f5c6cb;
+
+  /* Other */
+  --separator-color: #dee2e6;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  padding: 20px;
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+.crp-app {
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: var(--container-background);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.crp-header {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.crp-header__title {
+    margin-bottom: 0.5em;
+}
+
+.crp-footer {
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 25px;
+}
+
+.crp-footer__text {
+    font-size: 0.9em;
+    color: var(--footer-text-color);
+}
+
+/* --- Button Styling (Block: crp-button) --- */
+.crp-button {
+  cursor: pointer;
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: var(--button-primary-text);
+  background-color: var(--button-primary-bg);
+  border: none;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+  display: block;
+  margin: 0 auto 25px auto; /* Centered predict button */
+}
+
+.crp-button:hover:not(:disabled) {
+  background-color: var(--button-primary-hover-bg);
+}
+
+.crp-button:focus {
+  outline: 2px solid var(--button-focus-outline);
+  outline-offset: 2px;
+}
+
+.crp-button:disabled {
+    background-color: var(--button-disabled-bg);
+    cursor: not-allowed;
+}
+
+/* --- Common Width (Utility Class) --- */
+.common-width {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* --- Results Area (Block: crp-results) --- */
+.crp-results {
+    margin-bottom: 20px;
+}
+
+/* --- Gauge Styling (Block: crp-gauge) --- */
+.crp-gauge {
+  position: relative;
+  height: 50px;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  overflow: visible; /* Keep visible for threshold value above */
+  margin-bottom: 35px;
+}
+
+.crp-gauge__fill {
+  height: 100%;
+  width: 0%; /* Updated by JavaScript */
+  border-radius: 4px; /* Match parent's rounded corners slightly */
+  transition: width 0.6s ease, background-color 0.6s ease;
+}
+
+.crp-gauge__text {
+  position: absolute;
+  top: 0;
+  left: 15px; /* Padding from left */
+  width: calc(100% - 30px); /* Adjust width for padding */
+  height: 100%;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1.1rem;
+  z-index: 5;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.crp-gauge__threshold-mark {
+  position: absolute;
+  width: 2px;
+  height: 100%; /* Full height of the gauge */
+  background-color: var(--gauge-threshold-color);
+  top: 0;
+  z-index: 10; /* Above fill and text */
+  visibility: hidden; /* Controlled by JS */
+}
+
+.crp-gauge__threshold-value {
+  position: absolute;
+  top: -25px; /* Positioned above the gauge */
+  transform: translateX(-50%); /* Center align with the mark */
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: var(--gauge-threshold-color);
+  z-index: 10; /* Consistent with mark */
+  visibility: hidden; /* Controlled by JS */
+  white-space: nowrap;
+}
+
+/* --- Client Info Box (Block: crp-client-info) --- */
+.crp-client-info {
+  padding: 15px;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  font-size: 1rem;
+  background-color: var(--light-gray-background);
+  margin-top: 10px;
+}
+
+.crp-client-info__line { /* Class applied to <p> in HTML */
+  margin: 5px 0;
+  padding-left: 0; /* Resetting default paragraph padding if any */
+}
+.crp-client-info strong {
+    margin-right: 5px;
+}
+
+/* --- Toggle Area (Block: crp-toggle-area) & Toggle Component (Block: crp-toggle) --- */
+.crp-toggle-area {
+  margin-top: 20px;
+  text-align: center; /* Centers the inline toggle blocks */
+}
+
+.crp-toggle { /* New block for each toggle unit */
+  display: inline-flex; /* Aligns checkbox and label, allows them to sit side-by-side */
+  align-items: center;
+  margin-left: 10px; /* Provides spacing between toggles if there are multiple */
+  margin-right: 10px;
+}
+
+.crp-toggle__input {
+  margin-right: 5px; /* Space between checkbox and label text */
+}
+
+.crp-toggle__label {
+  cursor: pointer;
+}
+
+
+/* --- Dashboard (Block: crp-dashboard) --- */
+.crp-dashboard {
+  display: none; /* Controlled by JS */
+  margin-top: 20px;
+  border-top: 1px solid var(--separator-color);
+  padding-top: 20px;
+}
+.crp-dashboard__title {
+    text-align: center;
+    margin-bottom: 15px;
+}
+.crp-dashboard__image {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+}
