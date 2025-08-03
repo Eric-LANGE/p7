@@ -1,3 +1,4 @@
+artifact_path: model
 flavors:
   python_function:
     env:
@@ -6,7 +7,7 @@ flavors:
     loader_module: mlflow.sklearn
     model_path: model.pkl
     predict_fn: predict_proba
-    python_version: 3.11.12
+    python_version: 3.11.13
   sklearn:
     code: null
     pickled_model: model.pkl
@@ -14,18 +15,19 @@ flavors:
     sklearn_version: 1.6.1
 is_signature_from_type_hint: false
 metadata:
-  optimal_threshold: 0.5307
-mlflow_version: 2.22.0
-model_size_bytes: 426613
-model_uuid: 6c7c96c73fba4fbba369f62ab96f6530
+  optimal_threshold: 0.5143
+mlflow_version: 2.22.1
+model_size_bytes: 330197
+model_uuid: b48276055f704019844f8aff807b75b5
 prompts: null
+run_id: ca0318f87a3b40dd980993999884b851
 signature:
   inputs: '[{"type": "string", "name": "NAME_CONTRACT_TYPE", "required": true}, {"type":
     "string", "name": "CODE_GENDER", "required": true}, {"type": "string", "name":
     "FLAG_OWN_CAR", "required": true}, {"type": "string", "name": "FLAG_OWN_REALTY",
     "required": true}, {"type": "double", "name": "AMT_INCOME_TOTAL", "required":
     true}, {"type": "double", "name": "AMT_CREDIT", "required": true}, {"type": "double",
-    "name": "AMT_ANNUITY", "required": false}, {"type": "string", "name": "NAME_TYPE_SUITE",
+    "name": "AMT_ANNUITY", "required": true}, {"type": "string", "name": "NAME_TYPE_SUITE",
     "required": false}, {"type": "string", "name": "NAME_INCOME_TYPE", "required":
     true}, {"type": "string", "name": "NAME_EDUCATION_TYPE", "required": true}, {"type":
     "string", "name": "NAME_FAMILY_STATUS", "required": true}, {"type": "string",
@@ -61,12 +63,12 @@ signature:
     false}, {"type": "double", "name": "AMT_REQ_CREDIT_BUREAU_MON", "required": false},
     {"type": "double", "name": "AMT_REQ_CREDIT_BUREAU_QRT", "required": false}, {"type":
     "double", "name": "AMT_REQ_CREDIT_BUREAU_YEAR", "required": false}, {"type": "double",
-    "name": "PAYMENT_RATE", "required": false}, {"type": "double", "name": "ANNUITY_INCOME_PERC",
-    "required": false}, {"type": "double", "name": "INCOME_CREDIT_PERC", "required":
+    "name": "PAYMENT_RATE", "required": true}, {"type": "double", "name": "ANNUITY_INCOME_PERC",
+    "required": true}, {"type": "double", "name": "INCOME_CREDIT_PERC", "required":
     true}, {"type": "double", "name": "DEBT_TO_INCOME", "required": true}, {"type":
     "double", "name": "CREDIT_PER_PERSON", "required": false}]'
   outputs: '[{"type": "tensor", "tensor-spec": {"dtype": "float64", "shape": [-1,
     2]}}]'
   params: null
 type_hint_from_example: false
-utc_time_created: '2025-05-21 11:54:31.155909'
+utc_time_created: '2025-08-03 08:04:31.688099'
