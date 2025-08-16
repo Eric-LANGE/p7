@@ -8,7 +8,9 @@ WORKDIR /app
 
 # 3. Copy and install env
 COPY credit_risk_env.yml /app/
-RUN micromamba create -y --name credit_risk_env -f /app/credit_risk_env.yml && \
+
+# Install packages directly into the base environment
+RUN micromamba install -y -n base -f /app/credit_risk_env.yml && \
 micromamba clean -afy
 
 # 4. Entrypoint script

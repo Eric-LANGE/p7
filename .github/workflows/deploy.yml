@@ -1,25 +1,23 @@
 name: Deploy to Hugging Face Spaces
 
-# Trigger the workflow on push events to the main branch
 on:
   push:
     branches:
       - main
-  workflow_dispatch: # Allows manual triggering from the Actions tab
+  workflow_dispatch:
 
 jobs:
   build-and-test:
-    runs-on: ubuntu-latest # Use a standard Linux runner
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # --- Added Python Setup and Quality Checks ---
+      # --- Python quality checks (host environment, not Docker) ---
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          # Use the same Python version as the project environment
           python-version: '3.11.12'
 
       - name: Install linting and formatting tools
@@ -30,9 +28,7 @@ jobs:
       - name: Lint with flake8
         run: |
           echo "Running flake8 linter..."
-          # stop the build if there are Python syntax errors or undefined names
           flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-          # exit-zero treats all errors as warnings.
           flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
 
       - name: Check formatting with black
@@ -40,46 +36,44 @@ jobs:
           echo "Checking code formatting with black..."
           black --check .
 
+      # --- Docker build + test (uses micromamba base-env image) ---
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3 # Sets up advanced Docker build capabilities
+        uses: docker/setup-buildx-action@v3
 
       - name: Build Docker image
         id: docker_build
         uses: docker/build-push-action@v5
         with:
-          context: . # Build context is the root of the repo
-          file: ./Dockerfile # Path to the Dockerfile
-          push: false # Don't push the image to a registry (HF Spaces builds from Dockerfile)
-          load: true # Load the image into the local Docker daemon for testing
-          tags: credit-risk-app:latest # Tag the image locally
+          context: .
+          file: ./Dockerfile
+          push: false
+          load: true
+          tags: credit-risk-app:latest
           provenance: false
 
       - name: Run tests using the built image
         run: |
-          echo "Running tests within the Docker container..."
-          docker run --rm credit-risk-app:latest micromamba run -n credit_risk_env pytest tests/
+          echo "Running pytest inside Docker container..."
+          docker run --rm credit-risk-app:latest pytest tests/
+          # ✅ No micromamba activation needed — dependencies are in base
 
   deploy-to-spaces:
-    needs: build-and-test # Depends on the build and test job succeeding
+    needs: build-and-test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0 # Fetch all history, needed for git push
-          lfs: true      # Ensure LFS files are properly checked out
+          fetch-depth: 0
+          lfs: true
 
       - name: Push to Hugging Face Hub
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
           HF_USERNAME: ${{ secrets.HF_USERNAME }}
         run: |
-          # 'huggingface_repo: p7-app'
           SPACE_NAME="p7-app"
-          # The branch to push from GitHub and deploy to Hugging Face
           GIT_BRANCH="main"
 
           echo "Pushing to Hugging Face Space: $HF_USERNAME/$SPACE_NAME"
           git push "https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/$SPACE_NAME" "$GIT_BRANCH" --force
-          # Using --force is common for deploying to Spaces to overwrite the destination branch.
-
