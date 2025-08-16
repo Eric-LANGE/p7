@@ -57,7 +57,7 @@ jobs:
       - name: Run tests using the built image
         run: |
           echo "Running tests within the Docker container..."
-          docker run --rm credit-risk-app:latest conda run -n credit_risk_env pytest tests/
+          docker run --rm credit-risk-app:latest micromamba run -n credit_risk_env pytest tests/
 
   deploy-to-spaces:
     needs: build-and-test # Depends on the build and test job succeeding
