@@ -1,17 +1,15 @@
-# Dockerfile (Single-Stage Conda + Mamba)
+# Dockerfile (Single-Stage Micromamba)
 
 # 1. base image
-FROM continuumio/miniconda3:main
+FROM mambaorg/micromamba:latest
 
 # 2. Set working dir
 WORKDIR /app
 
 # 3. Copy and install env
 COPY credit_risk_env.yml /app/
-RUN conda update -n base -c defaults conda -y && \
-    conda install -n base -c conda-forge mamba -y && \
-    mamba env create -f /app/credit_risk_env.yml && \
-    conda clean -afy
+RUN micromamba create -y --name credit_risk_env -f /app/credit_risk_env.yml && \
+micromamba clean -afy
 
 # 4. Entrypoint script
 COPY entrypoint.sh /app/entrypoint.sh
