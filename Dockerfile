@@ -11,7 +11,7 @@ COPY credit_risk_env.yml /app/
 
 # Ensure base env is on PATH (so pytest, uvicorn, etc. are available)
 ENV MAMBA_ROOT_PREFIX=/opt/conda \
-    PATH=/opt/conda/envs/base/bin:$PATH
+PATH=/opt/conda/bin:$PATH
 
 # Install packages directly into the base environment
 RUN micromamba install -y -n base -f /app/credit_risk_env.yml && \
