@@ -10,8 +10,8 @@ CONDA_ENV_NAME="credit_risk_env"
 echo "--- Entrypoint: Initializing Micromamba shell ---"
 eval "$(micromamba shell hook --shell bash)"
 
-+echo "--- Entrypoint: Activating Micromamba env: ${CONDA_ENV_NAME} ---"
-+micromamba activate "${CONDA_ENV_NAME}"
+echo "--- Entrypoint: Activating Micromamba env: ${CONDA_ENV_NAME} ---"
+micromamba activate "${CONDA_ENV_NAME}"
 
 # Verify activation
 if [[ "${CONDA_DEFAULT_ENV:-}" != "${CONDA_ENV_NAME}" ]]; then
