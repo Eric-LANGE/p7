@@ -12,8 +12,7 @@ RUN micromamba create -y --name credit_risk_env -f /app/credit_risk_env.yml && \
 micromamba clean -afy
 
 # 4. Entrypoint script
-COPY entrypoint.sh /app/entrypoint.sh
-RUN chmod +x /app/entrypoint.sh
+COPY --chmod=755 entrypoint.sh /app/entrypoint.sh
 
 # 5. Copy pytest config
 COPY pytest.ini /app/pytest.ini
