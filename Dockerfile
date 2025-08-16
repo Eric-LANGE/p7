@@ -24,13 +24,14 @@ COPY --chmod=755 entrypoint.sh /app/entrypoint.sh
 COPY pytest.ini /app/pytest.ini
 
 # 6. Copy application code & assets
-COPY src/      /app/src/
-COPY models/   /app/models/
-COPY data/     /app/data/
-COPY static/   /app/static/
-COPY templates /app/templates/
-RUN mkdir -p /app/tests
-COPY tests/    /app/tests/
+COPY . /app/
+#COPY src/      /app/src/
+#COPY models/   /app/models/
+#COPY data/     /app/data/
+#COPY static/   /app/static/
+#COPY templates /app/templates/
+#RUN mkdir -p /app/tests
+#COPY tests/    /app/tests/
 
 # 7. Expose & launch
 EXPOSE 7860

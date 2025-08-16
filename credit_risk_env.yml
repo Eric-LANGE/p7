@@ -1,4 +1,3 @@
-name: credit_risk_env
 channels:
   - conda-forge
   - defaults
