@@ -24,7 +24,7 @@ from .services import PredictionService
 mlflow.set_tracking_uri("file:///tmp/mlruns-disabled")
 
 # Configure scikit-learn to output pandas DataFrames
-sklearn.set_config(transform_output="pandas")
+set_config(transform_output="pandas")
 
 APP_DIR = Path(__file__).resolve().parent
 PROJECT_ROOT_DIR = APP_DIR.parent.parent
