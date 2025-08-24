@@ -13,7 +13,7 @@ class MockPyFuncModel:
     def predict(self, data):
         # Simulate a prediction output: [probability_class_0, probability_class_1]
         # Ensure the output shape matches what PredictionService expects
-        return np.array([[0.6, 0.4]])
+        return pd.DataFrame([[0.6, 0.4]])
 
 
 @pytest.fixture

@@ -7,7 +7,7 @@ flavors:
     loader_module: mlflow.sklearn
     model_path: model.pkl
     predict_fn: predict_proba
-    python_version: 3.11.13
+    python_version: 3.12.11
   sklearn:
     code: null
     pickled_model: model.pkl
@@ -15,12 +15,12 @@ flavors:
     sklearn_version: 1.6.1
 is_signature_from_type_hint: false
 metadata:
-  optimal_threshold: 0.4886
+  optimal_threshold: 0.5319
 mlflow_version: 2.22.1
-model_size_bytes: 481566
-model_uuid: 7ef8c786c4de48718aef84863841f837
+model_size_bytes: 482498
+model_uuid: 504613909d4e4df9849bd298901f9407
 prompts: null
-run_id: 1f31142dcdae4e08b7f8dcb11ef576cb
+run_id: 12ae5cd4a4e74c3fa6f88deff7e9794f
 signature:
   inputs: '[{"type": "string", "name": "NAME_CONTRACT_TYPE", "required": true}, {"type":
     "string", "name": "CODE_GENDER", "required": true}, {"type": "string", "name":
@@ -71,4 +71,4 @@ signature:
     2]}}]'
   params: null
 type_hint_from_example: false
-utc_time_created: '2025-08-19 16:53:03.208732'
+utc_time_created: '2025-08-24 17:06:57.818387'

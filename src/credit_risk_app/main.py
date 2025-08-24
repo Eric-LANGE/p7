@@ -8,6 +8,7 @@ from contextlib import asynccontextmanager
 
 import pandas as pd
 import uvicorn
+from sklearn import set_config
 from fastapi import FastAPI, Request, HTTPException, Depends, Response
 from fastapi.responses import HTMLResponse, JSONResponse, FileResponse
 from fastapi.staticfiles import StaticFiles
@@ -21,6 +22,9 @@ from .services import PredictionService
 
 # Redirect mlflow file‐store
 mlflow.set_tracking_uri("file:///tmp/mlruns-disabled")
+
+# Configure scikit-learn to output pandas DataFrames
+sklearn.set_config(transform_output="pandas")
 
 APP_DIR = Path(__file__).resolve().parent
 PROJECT_ROOT_DIR = APP_DIR.parent.parent
